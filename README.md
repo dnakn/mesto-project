@@ -28,5 +28,4 @@
 
 **Ссылка на GitHub Pages**
 
-- [Ссылка на GH PAGES
-
+- [Ссылка на GH PAGES](https://dnakn.github.io/mesto-project/)
