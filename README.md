@@ -1,17 +1,32 @@
 # Проект: Место
 
+Учебный проект Яндекс практикума
+
 ### Обзор
 
-* Figma
-* Картинки
+-Интро
+-Figma
+-Картинки
+
+**Интро**
+
+- html
+- css
+- flex-box
+- grid-layout
+- file nested
+- bem
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+- [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
 **Картинки**
 
 Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
 Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
 
-Удачи!
+**Ссылка на GitHub Pages**
+
+- [Ссылка на GH PAGES
+
