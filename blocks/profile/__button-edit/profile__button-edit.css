@@ -12,7 +12,15 @@
   box-sizing: border-box;
 }
 
-.profile__button-edit:hover{
-    opacity: 0.7;
-    cursor: pointer;
+.profile__button-edit:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .profile__button-edit {
+    background-size: 7px 7px;
+    width: 18px;
+    height: 18px;
+  }
 }
