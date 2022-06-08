@@ -16,3 +16,12 @@
   opacity: 0.7;
   cursor: pointer;
 }
+
+@media screen and (max-width: 500px) {
+  .popup__button-submit {
+    padding: 14px 0 14px 0;
+    font-size: 14px;
+    line-height: 17px;
+   
+  }
+}
