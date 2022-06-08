@@ -10,26 +10,33 @@
 
   <body>
     <div class="page">
-      <section class="popup popup">
+      <div class="popup">
         <div class="popup__container">
           <button
             type="button"
             aria-label="кнопка закрыть"
             class="popup__button-close"
           ></button>
-          <div class="popup__wrapper">
+          <form name="profile_form" class="popup__form">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form">
-              <input type="text" class="popup__input" />
-              <input type="text" class="popup__input" />
+            <input
+              name="title"
+              type="text"
+              class="popup__input popup__input_type_title"
+            />
+            <input
+              name="subtitle"
+              type="text"
+              class="popup__input popup__input_type_subtitle"
+            />
 
-              <button type="submit" class="popup__button-submit">
-                Сохранить
-              </button>
-            </form>
-          </div>
+            <button type="submit" class="popup__button-submit">
+              Сохранить
+            </button>
+          </form>
         </div>
-      </section>
+      </div>
+
       <header class="header">
         <img
           class="header__logo"
@@ -66,95 +73,101 @@
         </section>
 
         <section class="cards">
-          <div class="card">
-            <img
-              class="card__image"
-              src="./images/avstria.jpeg"
-              alt="австрия"
-            />
-            <div class="card__description">
-              <p class="card__description-title">Австрия</p>
-              <button
-                type="button"
-                aria-label="кнопка нравится"
-                class="card__like-button"
-              ></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              class="card__image"
-              src="./images/chernogorija.jpeg"
-              alt="черногория"
-            />
-            <div class="card__description">
-              <p class="card__description-title">Черногория</p>
-              <button
-                type="button"
-                aria-label="кнопка нравится"
-                class="card__like-button"
-              ></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              class="card__image"
-              src="./images/estonia.jpeg"
-              alt="эстония"
-            />
-            <div class="card__description">
-              <p class="card__description-title">Эстония</p>
-              <button
-                type="button"
-                aria-label="кнопка нравится"
-                class="card__like-button"
-              ></button>
-            </div>
-          </div>
+          <ul class="cards__list">
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/avstria.jpeg"
+                alt="австрия"
+              />
+              <div class="card__description">
+                <p class="card__description-title">Австрия</p>
+                <button
+                  type="button"
+                  aria-label="кнопка нравится"
+                  class="card__like-button"
+                ></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/chernogorija.jpeg"
+                alt="черногория"
+              />
+              <div class="card__description">
+                <p class="card__description-title">Черногория</p>
+                <button
+                  type="button"
+                  aria-label="кнопка нравится"
+                  class="card__like-button"
+                ></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/estonia.jpeg"
+                alt="эстония"
+              />
+              <div class="card__description">
+                <p class="card__description-title">Эстония</p>
+                <button
+                  type="button"
+                  aria-label="кнопка нравится"
+                  class="card__like-button"
+                ></button>
+              </div>
+            </li>
 
-          <div class="card">
-            <img
-              class="card__image"
-              src="./images/gretsiya.jpeg"
-              alt="греция"
-            />
-            <div class="card__description">
-              <p class="card__description-title">Греция</p>
-              <button
-                type="button"
-                aria-label="кнопка нравится"
-                class="card__like-button"
-              ></button>
-            </div>
-          </div>
+            <li class="card">
+              <img
+                class="card__image"
+                src="./images/gretsiya.jpeg"
+                alt="греция"
+              />
+              <div class="card__description">
+                <p class="card__description-title">Греция</p>
+                <button
+                  type="button"
+                  aria-label="кнопка нравится"
+                  class="card__like-button"
+                ></button>
+              </div>
+            </li>
 
-          <div class="card">
-            <img class="card__image" src="./images/korea.jpeg" alt="корея" />
-            <div class="card__description">
-              <p class="card__description-title">Корея</p>
-              <button
-                type="button"
-                aria-label="кнопка нравится"
-                class="card__like-button"
-              ></button>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__image" src="images/venesia.jpeg" alt="венеция" />
-            <div class="card__description">
-              <p class="card__description-title">Венеция</p>
-              <button
-                type="button"
-                aria-label="кнопка нравится"
-                class="card__like-button"
-              ></button>
-            </div>
-          </div>
+            <li class="card">
+              <img class="card__image" src="./images/korea.jpeg" alt="корея" />
+              <div class="card__description">
+                <p class="card__description-title">Корея</p>
+                <button
+                  type="button"
+                  aria-label="кнопка нравится"
+                  class="card__like-button"
+                ></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                class="card__image"
+                src="images/venesia.jpeg"
+                alt="венеция"
+              />
+              <div class="card__description">
+                <p class="card__description-title">Венеция</p>
+                <button
+                  type="button"
+                  aria-label="кнопка нравится"
+                  class="card__like-button"
+                ></button>
+              </div>
+            </li>
+          </ul>
         </section>
       </main>
 
       <footer class="footer">
-        <p class="footer__copyright">&#169; 2022. Кондратьева Диана</p>
+        <p class="footer__copyright">&copy; 2022. Кондратьева Диана</p>
       </footer>
     </div>
   </body>
