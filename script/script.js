@@ -51,6 +51,14 @@ const list = document.querySelector(".cards__list");
 // получаем template
 const cardTemplate = document.querySelector(".template").content;
 
+function handleLikeButton(event) {
+  event.preventDefault();
+  // получаем элемент по которому было произведено событие
+  const likeButton = event.target;
+  // переключаем этому элементу класс (добавляем/удаляем)
+  likeButton.classList.toggle("card__like-button_ative");
+}
+
 function createCard(item) {
   // клонируем элемент
   const element = cardTemplate.querySelector(".card").cloneNode(true);
@@ -68,6 +76,9 @@ function createCard(item) {
   // вставляем текст в заголовок, текст из элемента массива
   descriptionTitle.textContent = item.name;
 
+  const likeButton = element.querySelector(".card__like-button");
+  likeButton.addEventListener("click", handleLikeButton);
+
   return element;
 }
 
@@ -75,19 +86,24 @@ function createCard(item) {
 function renderCards() {
   // цикл для прохождения по элементам массива карточек
   initialCards.forEach((item) => {
+    // на каждом шаге цикла создаем элемент
     const element = createCard(item);
+    // добавляем элемент в лист
     list.appendChild(element);
   });
 }
 
+// функция закрытия модального окна
 function closePopup(popupRef) {
   popupRef.classList.remove("popup_opened");
 }
 
+// функция открытия модального окна
 function openPopup(popupRef) {
   popupRef.classList.add("popup_opened");
 }
 
+// функция редактирования карточки
 function formSubmitHandler(evt) {
   evt.preventDefault();
   const titleValue = inputTitle.value;
@@ -98,19 +114,25 @@ function formSubmitHandler(evt) {
   closePopup(editPopup);
 }
 
+// функция добавления карты
 function addCard(event) {
   event.preventDefault();
+  // получаем значения из инпутов
   const name = inputAddTitle.value;
   const link = inputAddImage.value;
 
+  // создаем карточку, передавая в нее объект с именем и ссылкой
   const card = createCard({
     name,
     link,
   });
 
+  // добавляем в начало листа (при помощи prepend)
   list.prepend(card);
 
+  // закрываем модальное окно
   closePopup(addPopup);
+  // очищаем инпуты
   inputAddTitle.value = "";
   inputAddImage.value = "";
 }
