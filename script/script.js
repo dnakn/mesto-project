@@ -96,10 +96,8 @@ function createCards() {
 
 createCards();
 
-function closePopup() {
-  // закрываем popup (любой из)
-  editPopup.classList.remove("popup_opened");
-  addPopup.classList.remove("popup_opened");
+function closePopup(popupRef) {
+  popupRef.classList.remove("popup_opened");
 }
 
 function openPopup(popupRef) {
@@ -126,6 +124,6 @@ addButton.addEventListener("click", () => {
   openPopup(addPopup);
 });
 
-closeButton.addEventListener("click", closePopup);
-closeButtonNewPlace.addEventListener("click", closePopup);
+closeButton.addEventListener("click", () => closePopup(editPopup));
+closeButtonNewPlace.addEventListener("click", () => closePopup(addPopup));
 formElement.addEventListener("submit", formSubmitHandler);
