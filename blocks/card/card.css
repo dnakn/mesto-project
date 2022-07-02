@@ -1,5 +1,6 @@
 .card {
   min-height: 361px;
+  min-width: 282px;
   box-sizing: border-box;
   padding: 0;
   background-color: #fff;
