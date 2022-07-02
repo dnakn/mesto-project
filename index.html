@@ -102,7 +102,30 @@
         </section>
 
         <section class="cards">
-          <ul class="cards__list"></ul>
+          <ul class="cards__list">
+            <template class="template">
+              <li class="card">
+                <button
+                  type="button"
+                  aria-label="кнопка удалить"
+                  class="card__trash-button"
+                ></button>
+                <img
+                  class="card__image"
+                  src="./images/avstria.jpeg"
+                  alt="австрия"
+                />
+                <div class="card__description">
+                  <p class="card__description-title">Австрия</p>
+                  <button
+                    type="button"
+                    aria-label="кнопка нравится"
+                    class="card__like-button"
+                  ></button>
+                </div>
+              </li>
+            </template>
+          </ul>
         </section>
       </main>
 
