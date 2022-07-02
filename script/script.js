@@ -30,8 +30,8 @@ const addButton = document.querySelector(".profile__button-add");
 const closeButton = document.querySelector(".popup__button-close");
 const closeButtonNewPlace = document.querySelector(".close_new_place");
 
-const editPopup = document.querySelector(".popup");
-const addPopup = document.querySelector(".new_place");
+const editPopup = document.querySelector(".popup_edit");
+const addPopup = document.querySelector(".popup_add");
 const createPopup = document.querySelector(".new_place");
 
 const formElement = document.getElementById("profile_form");
@@ -59,6 +59,11 @@ function handleLikeButton(event) {
   likeButton.classList.toggle("card__like-button_ative");
 }
 
+function handleDelete(event) {
+  const target = event.target.parentElement;
+  target.remove();
+}
+
 function createCard(item) {
   // клонируем элемент
   const element = cardTemplate.querySelector(".card").cloneNode(true);
@@ -77,7 +82,9 @@ function createCard(item) {
   descriptionTitle.textContent = item.name;
 
   const likeButton = element.querySelector(".card__like-button");
+  const deleteButton = element.querySelector(".card__trash-button");
   likeButton.addEventListener("click", handleLikeButton);
+  deleteButton.addEventListener("click", handleDelete);
 
   return element;
 }
