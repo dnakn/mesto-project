@@ -26,8 +26,13 @@ const initialCards = [
 ];
 
 const editButton = document.querySelector(".profile__button-edit");
+const addButton = document.querySelector(".profile__button-add");
 const closeButton = document.querySelector(".popup__button-close");
-const popup = document.querySelector(".popup");
+const closeButtonNewPlace = document.querySelector(".close_new_place");
+
+const editPopup = document.querySelector(".popup");
+const addPopup = document.querySelector(".new_place");
+const createPopup = document.querySelector(".new_place");
 
 const formElement = document.querySelector(".popup__form");
 
@@ -92,7 +97,13 @@ function createCards() {
 createCards();
 
 function closePopup() {
-  popup.classList.remove("popup_opened");
+  // закрываем popup (любой из)
+  editPopup.classList.remove("popup_opened");
+  addPopup.classList.remove("popup_opened");
+}
+
+function openPopup(popupRef) {
+  popupRef.classList.add("popup_opened");
 }
 
 function formSubmitHandler(evt) {
@@ -102,15 +113,19 @@ function formSubmitHandler(evt) {
 
   title.textContent = titleValue;
   subTitle.textContent = subTitleValue;
-  closePopup();
+  closePopup(editPopup);
 }
 
 editButton.addEventListener("click", () => {
-  popup.classList.add("popup_opened");
+  openPopup(editPopup);
   inputTitle.value = title.textContent;
   inputSubTitle.value = subTitle.textContent;
 });
 
-closeButton.addEventListener("click", closePopup);
+addButton.addEventListener("click", () => {
+  openPopup(addPopup);
+});
 
+closeButton.addEventListener("click", closePopup);
+closeButtonNewPlace.addEventListener("click", closePopup);
 formElement.addEventListener("submit", formSubmitHandler);
