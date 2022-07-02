@@ -34,7 +34,8 @@ const editPopup = document.querySelector(".popup");
 const addPopup = document.querySelector(".new_place");
 const createPopup = document.querySelector(".new_place");
 
-const formElement = document.querySelector(".popup__form");
+const formElement = document.getElementById("profile_form");
+const addForm = document.getElementById("create_form");
 
 const inputTitle = document.querySelector(".popup__input_type_title");
 const inputSubTitle = document.querySelector(".popup__input_type_subtitle");
