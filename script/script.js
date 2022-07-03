@@ -48,8 +48,23 @@ const subTitle = document.querySelector(".profile__subtitle");
 
 const list = document.querySelector(".cards__list");
 
+// получаем модальное окно изображения
+const picturePopup = document.querySelector(".picture-popup");
+// получаем элемент закрытия окна изоборжения
+const picturePopupButtonClose = document.querySelector(".picture-popup__close");
+
 // получаем template
 const cardTemplate = document.querySelector(".template").content;
+
+// функция закрытия модального окна
+function closePopup(popupRef) {
+  popupRef.classList.remove("popup_opened");
+}
+
+// функция открытия модального окна
+function openPopup(popupRef) {
+  popupRef.classList.add("popup_opened");
+}
 
 function handleLikeButton(event) {
   event.preventDefault();
@@ -62,6 +77,31 @@ function handleLikeButton(event) {
 function handleDelete(event) {
   const target = event.target.parentElement;
   target.remove();
+}
+
+function handleClickImage(event) {
+  const target = event.target;
+
+  const card = target.closest(".card");
+
+  const cardImage = card.querySelector(".card__image");
+  const cardTitle = card.querySelector(".card__description-title");
+
+  picturePopup.classList.toggle("popup_opened");
+
+  const popupImage = document.querySelector(".picture-popup__image");
+  const popupTitle = document.querySelector(".picture-popup__description");
+
+  const link = cardImage.src;
+  const title = cardTitle.textContent;
+
+  popupImage.setAttribute("src", link);
+  popupImage.setAttribute("alt", title);
+
+  popupTitle.textContent = title;
+  picturePopupButtonClose.addEventListener("click", () =>
+    closePopup(picturePopup)
+  );
 }
 
 function createCard(item) {
@@ -85,6 +125,7 @@ function createCard(item) {
   const deleteButton = element.querySelector(".card__trash-button");
   likeButton.addEventListener("click", handleLikeButton);
   deleteButton.addEventListener("click", handleDelete);
+  image.addEventListener("click", handleClickImage);
 
   return element;
 }
@@ -98,16 +139,6 @@ function renderCards() {
     // добавляем элемент в лист
     list.appendChild(element);
   });
-}
-
-// функция закрытия модального окна
-function closePopup(popupRef) {
-  popupRef.classList.remove("popup_opened");
-}
-
-// функция открытия модального окна
-function openPopup(popupRef) {
-  popupRef.classList.add("popup_opened");
 }
 
 // функция редактирования карточки
