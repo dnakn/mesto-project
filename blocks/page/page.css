@@ -7,4 +7,5 @@
   box-sizing: border-box;
   color: #ffffff;
   position: relative;
+  min-height: 100vh;
 }

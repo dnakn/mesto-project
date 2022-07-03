@@ -30,10 +30,8 @@ const initialCards = [
 const editButton = document.querySelector(".profile__button-edit");
 // кнопка добавления карточки
 const addButton = document.querySelector(".profile__button-add");
-// кнопка закрытия окна редактирования
-const buttonCloseEditPopup = document.querySelector(".popup__button-close");
-// кнопка закрытия окна добавления
-const buttonCloseAddPopup = document.querySelector(".close_new_place");
+
+const closeButtons = document.querySelectorAll(".popup__button-close");
 
 // модальное окно редактирования
 const editPopup = document.querySelector(".popup_edit");
@@ -41,7 +39,7 @@ const editPopup = document.querySelector(".popup_edit");
 const addPopup = document.querySelector(".popup_add");
 
 // элемент формы модального окна редактирования
-const formElement = document.getElementById("profile_form");
+const profileForm = document.getElementById("profile_form");
 // элемент формы модального окна добавления
 const addForm = document.getElementById("create_form");
 
@@ -58,11 +56,14 @@ const list = document.querySelector(".cards__list");
 
 // получаем модальное окно изображения
 const picturePopup = document.querySelector(".picture-popup");
-// получаем элемент закрытия окна изоборжения
-const picturePopupButtonClose = document.querySelector(".picture-popup__close");
 
 // получаем template
 const cardTemplate = document.querySelector(".template").content;
+
+// получаем элемент изображения модального окна изображения
+const popupImage = document.querySelector(".picture-popup__image");
+// получаем элемент описания модального окна изображения
+const popupTitle = document.querySelector(".picture-popup__description");
 
 // функция закрытия модального окна
 function closePopup(popupRef) {
@@ -83,31 +84,18 @@ function handleLikeButton(event) {
 }
 
 function handleDelete(event) {
-  const target = event.target.parentElement;
+  const target = event.target.closest(".card");
   target.remove();
 }
 
-function handleClickImage(event) {
-  // получаем родителя изображения по которому кликнули (карточку)
-  const card = event.target.parentElement;
-
-  // изображения карточки
-  const cardImage = card.querySelector(".card__image");
-  // описание карточки
-  const cardTitle = card.querySelector(".card__description-title");
-
+function handleClickImage(item) {
   // открываем модальное окно карточки
-  picturePopup.classList.toggle("popup_opened");
-
-  // получаем элемент изображения модального окна изображения
-  const popupImage = document.querySelector(".picture-popup__image");
-  // получаем элемент описания модального окна изображения
-  const popupTitle = document.querySelector(".picture-popup__description");
+  openPopup(picturePopup);
 
   // получаем ссылку картинки из карточки
-  const link = cardImage.src;
+  const link = item.link;
   // получаем заголовок карточки
-  const title = cardTitle.textContent;
+  const title = item.name;
 
   // устанавливаем атрибуты alt/src в изображение модального окна
   popupImage.setAttribute("src", link);
@@ -115,10 +103,6 @@ function handleClickImage(event) {
 
   // добавляем текст из карточки в описание модального окна
   popupTitle.textContent = title;
-  // слушатель события клика по кнопке закрытия
-  picturePopupButtonClose.addEventListener("click", () =>
-    closePopup(picturePopup)
-  );
 }
 
 function createCard(item) {
@@ -142,7 +126,7 @@ function createCard(item) {
   const deleteButton = element.querySelector(".card__trash-button");
   likeButton.addEventListener("click", handleLikeButton);
   deleteButton.addEventListener("click", handleDelete);
-  image.addEventListener("click", handleClickImage);
+  image.addEventListener("click", () => handleClickImage(item));
 
   return element;
 }
@@ -158,8 +142,8 @@ function renderCards() {
   });
 }
 
-// функция редактирования карточки
-function handleEditCard(event) {
+// функция редактирования профиля
+function handleProfileFormSubmit(event) {
   event.preventDefault();
   const titleValue = inputTitle.value;
   const subTitleValue = inputSubTitle.value;
@@ -188,8 +172,7 @@ function handleAddCard(event) {
   // закрываем модальное окно
   closePopup(addPopup);
   // очищаем инпуты
-  inputAddTitle.value = "";
-  inputAddImage.value = "";
+  event.target.reset();
 }
 
 editButton.addEventListener("click", () => {
@@ -202,12 +185,15 @@ addButton.addEventListener("click", () => {
   openPopup(addPopup);
 });
 
-// слушатель события клика по кнопке закрытия окна редактирования
-buttonCloseEditPopup.addEventListener("click", () => closePopup(editPopup));
-// слушатель события клика по кнопке закрытия окна добавления
-buttonCloseAddPopup.addEventListener("click", () => closePopup(addPopup));
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап
+  const popup = button.closest(".popup");
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener("click", () => closePopup(popup));
+});
+
 // слушатель события отправки формы редактирования
-formElement.addEventListener("submit", handleEditCard);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
 // слушатель события отправки формы добавления
 addForm.addEventListener("submit", handleAddCard);
 
