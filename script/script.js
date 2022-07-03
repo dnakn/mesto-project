@@ -1,3 +1,4 @@
+// массив изображений
 const initialCards = [
   {
     name: "Австрия",
@@ -25,16 +26,23 @@ const initialCards = [
   },
 ];
 
+// кнопка редактирования карточки
 const editButton = document.querySelector(".profile__button-edit");
+// кнопка добавления карточки
 const addButton = document.querySelector(".profile__button-add");
-const closeButton = document.querySelector(".popup__button-close");
-const closeButtonNewPlace = document.querySelector(".close_new_place");
+// кнопка закрытия окна редактирования
+const buttonCloseEditPopup = document.querySelector(".popup__button-close");
+// кнопка закрытия окна добавления
+const buttonCloseAddPopup = document.querySelector(".close_new_place");
 
+// модальное окно редактирования
 const editPopup = document.querySelector(".popup_edit");
+// модальное окно добавления
 const addPopup = document.querySelector(".popup_add");
-const createPopup = document.querySelector(".new_place");
 
+// элемент формы модального окна редактирования
 const formElement = document.getElementById("profile_form");
+// элемент формы модального окна добавления
 const addForm = document.getElementById("create_form");
 
 const inputAddTitle = document.getElementById("add_title");
@@ -80,25 +88,34 @@ function handleDelete(event) {
 }
 
 function handleClickImage(event) {
-  const target = event.target;
+  // получаем родителя изображения по которому кликнули (карточку)
+  const card = event.target.parentElement;
 
-  const card = target.closest(".card");
-
+  // изображения карточки
   const cardImage = card.querySelector(".card__image");
+  // описание карточки
   const cardTitle = card.querySelector(".card__description-title");
 
+  // открываем модальное окно карточки
   picturePopup.classList.toggle("popup_opened");
 
+  // получаем элемент изображения модального окна изображения
   const popupImage = document.querySelector(".picture-popup__image");
+  // получаем элемент описания модального окна изображения
   const popupTitle = document.querySelector(".picture-popup__description");
 
+  // получаем ссылку картинки из карточки
   const link = cardImage.src;
+  // получаем заголовок карточки
   const title = cardTitle.textContent;
 
+  // устанавливаем атрибуты alt/src в изображение модального окна
   popupImage.setAttribute("src", link);
   popupImage.setAttribute("alt", title);
 
+  // добавляем текст из карточки в описание модального окна
   popupTitle.textContent = title;
+  // слушатель события клика по кнопке закрытия
   picturePopupButtonClose.addEventListener("click", () =>
     closePopup(picturePopup)
   );
@@ -114,9 +131,9 @@ function createCard(item) {
   const descriptionTitle = element.querySelector(".card__description-title");
 
   // тегу img добавляем значение элемента массива link в src
-  image.src = item.link;
+  image.setAttribute("src", item.link);
   // тегу img добавляем значение элемента массива name в link
-  image.alt = item.name;
+  image.setAttribute("alt", item.name);
 
   // вставляем текст в заголовок, текст из элемента массива
   descriptionTitle.textContent = item.name;
@@ -142,8 +159,8 @@ function renderCards() {
 }
 
 // функция редактирования карточки
-function formSubmitHandler(evt) {
-  evt.preventDefault();
+function handleEditCard(event) {
+  event.preventDefault();
   const titleValue = inputTitle.value;
   const subTitleValue = inputSubTitle.value;
 
@@ -152,8 +169,8 @@ function formSubmitHandler(evt) {
   closePopup(editPopup);
 }
 
-// функция добавления карты
-function addCard(event) {
+// функция добавления карточки
+function handleAddCard(event) {
   event.preventDefault();
   // получаем значения из инпутов
   const name = inputAddTitle.value;
@@ -185,9 +202,14 @@ addButton.addEventListener("click", () => {
   openPopup(addPopup);
 });
 
-closeButton.addEventListener("click", () => closePopup(editPopup));
-closeButtonNewPlace.addEventListener("click", () => closePopup(addPopup));
-formElement.addEventListener("submit", formSubmitHandler);
-addForm.addEventListener("submit", addCard);
+// слушатель события клика по кнопке закрытия окна редактирования
+buttonCloseEditPopup.addEventListener("click", () => closePopup(editPopup));
+// слушатель события клика по кнопке закрытия окна добавления
+buttonCloseAddPopup.addEventListener("click", () => closePopup(addPopup));
+// слушатель события отправки формы редактирования
+formElement.addEventListener("submit", handleEditCard);
+// слушатель события отправки формы добавления
+addForm.addEventListener("submit", handleAddCard);
 
+// отрисовываем карточки
 renderCards();
